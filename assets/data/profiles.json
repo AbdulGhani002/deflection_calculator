@@ -1,0 +1,47 @@
+[
+  {
+    "id": "p8_40x40",
+    "name": "Profile 8 40x40 Light",
+    "category": "Series 8",
+    "image_asset": "assets/images/40x40.png",
+    "ix_cm4": 9.7,
+    "iy_cm4": 9.7,
+    "e_modulus": 70000
+  },
+  {
+    "id": "p8_80x40",
+    "name": "Profile 8 80x40 Light",
+    "category": "Series 8",
+    "image_asset": "assets/images/80x40.png",
+    "ix_cm4": 65.8,
+    "iy_cm4": 18.2,
+    "e_modulus": 70000
+  },
+  {
+    "id": "p8_40x80",
+    "name": "Profile 8 40x80 Light",
+    "category": "Series 8",
+    "image_asset": "assets/images/40x80.png",
+    "ix_cm4": 18.2,
+    "iy_cm4": 65.8,
+    "e_modulus": 70000
+  },
+  {
+    "id": "p8_80x80",
+    "name": "Profile 8 80x80 Light",
+    "category": "Series 8",
+    "image_asset": "assets/images/80x80.png",
+    "ix_cm4": 76.5,
+    "iy_cm4": 76.5,
+    "e_modulus": 70000
+  },
+  {
+    "id": "p8_120x40",
+    "name": "Profile 8 120x40",
+    "category": "Series 8",
+    "image_asset": "assets/images/120x40.png",
+    "ix_cm4": 210.5,
+    "iy_cm4": 27.3,
+    "e_modulus": 70000
+  }
+]
