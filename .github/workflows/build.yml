@@ -52,17 +52,25 @@ jobs:
       # For signed release builds (requires secrets)
       - name: Decode Keystore
         if: github.event_name != 'pull_request'
-        continue-on-error: true
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
-          if [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ]; then
+          if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ]; then
+            echo "Setting up Android signing..."
             mkdir -p android/keystore
-            echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android/keystore/release-keystore.jks
-            echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/key.properties
-            echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
-            echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
+            echo "$KEYSTORE_BASE64" | base64 --decode > android/keystore/release-keystore.jks
+            echo "storePassword=$KEYSTORE_PASSWORD" > android/key.properties
+            echo "keyPassword=$KEY_PASSWORD" >> android/key.properties
+            echo "keyAlias=$KEY_ALIAS" >> android/key.properties
             echo "storeFile=../keystore/release-keystore.jks" >> android/key.properties
+            echo "✅ Keystore configured for signed release build"
           else
-            echo "Keystore secrets not configured, skipping signed build"
+            echo "⚠️ Keystore secrets not configured - building unsigned APK"
+            # Remove key.properties if it exists to ensure unsigned build
+            rm -f android/key.properties
           fi
 
       # Build APK (split by ABI for smaller files)
