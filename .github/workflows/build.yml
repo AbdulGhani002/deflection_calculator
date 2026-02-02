@@ -12,6 +12,10 @@ on:
     branches: [main, master]
   workflow_dispatch: # Allow manual trigger
 
+# Required for creating releases
+permissions:
+  contents: write
+
 env:
   FLUTTER_VERSION: '3.32.0'
 
