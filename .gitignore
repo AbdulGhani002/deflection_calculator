@@ -43,3 +43,15 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# === SECURITY: Never commit these ===
+# Keystore and signing
+*.jks
+*.keystore
+android/key.properties
+android/keystore/
+
+# API keys and secrets
+*.env
+.env.*
+secrets.dart
